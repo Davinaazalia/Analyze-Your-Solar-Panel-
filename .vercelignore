@@ -1,0 +1,19 @@
+# Ignore Python backend files
+*.py
+*.pyc
+__pycache__/
+venv/
+.venv/
+env/
+.env
+
+# Ignore data and models
+data/
+models/
+runs/
+
+# Ignore training notebooks
+*.ipynb
+
+# Keep only Web_Implementation
+!Web_Implementation/
