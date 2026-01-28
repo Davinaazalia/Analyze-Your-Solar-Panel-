@@ -559,9 +559,9 @@
                         if (loadingSpinner) loadingSpinner.style.display = 'none';
                         
                         if (result.success) {
-                            // Check if confidence is too low to predict (threshold: 85% for high accuracy - reject non-panel images)
+                            // Check if confidence is too low to predict (threshold: 90% - very strict to reject non-panel images)
                             const confidence = result.prediction.confidence;
-                            const canPredict = confidence >= 85;
+                            const canPredict = confidence >= 90;
                             
                             console.log('🎯 Confidence:', confidence, '| Can predict:', canPredict);
                             
@@ -597,7 +597,7 @@
                                                     The image does not appear to be a solar panel.
                                                 </div>
                                                 <div class="text-[14px] text-gray-500">
-                                                    Confidence: ${confidence}% (Threshold: 85%)
+                                                    Confidence: ${confidence}% (Threshold: 90%)
                                                 </div>
                                                 <div class="text-[14px] text-gray-500 mt-2">
                                                     Please upload a clear image of a solar panel for accurate analysis.
@@ -614,7 +614,7 @@
                                 // Normal prediction display with image preview
                                 // Card 1: Image Preview & Prediction Class & Confidence
                                 if (card1) {
-                                    const confidenceColor = confidence >= 85 ? '#27ae60' : '#f39c12';
+                                    const confidenceColor = confidence >= 90 ? '#27ae60' : '#f39c12';
                                     card1.innerHTML = `
                                         <div class="text-[24px] font-semibold mb-4">Uploaded Image</div>
                                         <img src="${imageDataUrl}" alt="Analyzed image" class="w-full h-48 object-cover rounded-lg mb-4">
