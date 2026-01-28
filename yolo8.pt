@@ -1,9 +1,0 @@
-import os, shutil
-from ultralytics import YOLO
-import cv2
-
-model="yolo10.pt"
-input = "../data"
-output = "src"
-
-def detect

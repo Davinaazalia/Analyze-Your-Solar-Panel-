@@ -47,10 +47,6 @@ test_doc.jpg
 temp/
 *.tmp
 
-# Model weights (optional - uncomment if models are large)
-# models/saved_models/*.pt
-# *.pt
-
 # Logs
 debug.log
 *.log
@@ -66,9 +62,20 @@ out/
 # Windows
 Thumbs.db
 
-# Data
-data/yolo_dataset/
+# Data (EXCLUDE - terlalu besar)
+data/
+
+# Training outputs (EXCLUDE)
 runs/
+src/
+m/
+METOPEN/
+
+# Model files (KEEP ONLY yang diperlukan)
+# Exclude model lama
+yolo8.pt
+yolov10s.pt
+yolov8s-cls.pt
 
 # Cache
 .pytest_cache/
@@ -77,3 +84,23 @@ htmlcov/
 
 # Vercel
 .vercel
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# Documentation
+METODOLOGI*.md
+RESEARCH_PAPER.md
+CHEAT_SHEET.md
+QUICK_START.md
+INTEGRATION*.md
+ARCHITECTURE.txt
+
+# Docker
+docker-compose.yml
+Dockerfile
+
+# Setup scripts
+setup*.sh
+setup*.ps1
