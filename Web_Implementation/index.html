@@ -102,7 +102,7 @@
     
                 <button class="mt-4 bg-[#29344A] text-[22px] px-9 py-2  text-white rounded-full "> 
                     Get Started 
-                     <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-[18px] font-normal px-4"></i>
+                     <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-[18px]  px-2"></i>
                 </button>
             <!-- text-4xl → judul besar
             font-bold → tebel
@@ -379,28 +379,63 @@
         </footer>
 
         <!-- Custom Notification Toast -->
-        <div id="notificationToast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-500 ease-out">
-            <div class="bg-white rounded-lg shadow-2xl border-l-4 border-green-500 p-6 max-w-md">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0">
-                        <svg id="toastIcon" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+        <div id="notificationToast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-all duration-500 ease-out">
+            <div class="bg-white rounded-lg shadow-2xl border-l-4 border-green-500 p-6 max-w-md animate-slideIn">
+                <div class="flex items-start justify-between">
+                    <div class="flex items-start flex-1">
+                        <div class="flex-shrink-0">
+                            <svg id="toastIcon" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <h3 id="toastTitle" class="text-lg font-semibold text-gray-900">Success!</h3>
+                            <p id="toastMessage" class="mt-1 text-sm text-gray-600">Your operation was successful.</p>
+                        </div>
                     </div>
-                    <div class="ml-4 flex-1">
-                        <h3 id="toastTitle" class="text-lg font-semibold text-gray-900">Success!</h3>
-                        <p id="toastMessage" class="mt-1 text-sm text-gray-600">Your operation was successful.</p>
-                    </div>
-                    <button onclick="hideNotification()" class="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-600">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button onclick="hideNotification()" class="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-700 transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
+                <!-- Progress bar untuk countdown -->
+                <div id="toastProgressBar" class="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-green-500 rounded-full animate-shrink" style="animation: shrink 5s linear forwards;"></div>
+                </div>
             </div>
         </div>
+        
+        <style>
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes shrink {
+                from {
+                    width: 100%;
+                }
+                to {
+                    width: 0%;
+                }
+            }
+            
+            .animate-slideIn {
+                animation: slideIn 0.4s ease-out;
+            }
+        </style>
 
         <script>
+            // Auto-hide timeout ID untuk tracking
+            let notificationTimeout;
+            
             // Custom Notification Function
             function showNotification(title, message, type = 'success') {
                 const toast = document.getElementById('notificationToast');
@@ -408,32 +443,53 @@
                 const toastMessage = document.getElementById('toastMessage');
                 const toastIcon = document.getElementById('toastIcon');
                 const toastContainer = toast.firstElementChild;
+                const progressBar = document.getElementById('toastProgressBar').firstElementChild;
+                
+                // Clear previous timeout
+                if (notificationTimeout) {
+                    clearTimeout(notificationTimeout);
+                }
                 
                 // Set content
                 toastTitle.textContent = title;
                 toastMessage.textContent = message;
                 
                 // Set colors based on type
+                let borderColor = 'border-green-500';
+                let iconColor = 'text-green-500';
+                let progressColor = 'bg-green-500';
+                
                 if (type === 'success') {
-                    toastContainer.className = 'bg-white rounded-lg shadow-2xl border-l-4 border-green-500 p-6 max-w-md';
-                    toastIcon.className = 'h-8 w-8 text-green-500';
+                    borderColor = 'border-green-500';
+                    iconColor = 'text-green-500';
+                    progressColor = 'bg-green-500';
                     toastIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />';
                 } else if (type === 'error') {
-                    toastContainer.className = 'bg-white rounded-lg shadow-2xl border-l-4 border-red-500 p-6 max-w-md';
-                    toastIcon.className = 'h-8 w-8 text-red-500';
+                    borderColor = 'border-red-500';
+                    iconColor = 'text-red-500';
+                    progressColor = 'bg-red-500';
                     toastIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />';
                 } else if (type === 'warning') {
-                    toastContainer.className = 'bg-white rounded-lg shadow-2xl border-l-4 border-yellow-500 p-6 max-w-md';
-                    toastIcon.className = 'h-8 w-8 text-yellow-500';
+                    borderColor = 'border-yellow-500';
+                    iconColor = 'text-yellow-500';
+                    progressColor = 'bg-yellow-500';
                     toastIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />';
                 }
+                
+                // Update container classes
+                toastContainer.className = `bg-white rounded-lg shadow-2xl border-l-4 ${borderColor} p-6 max-w-md animate-slideIn`;
+                toastIcon.className = `h-8 w-8 ${iconColor}`;
+                
+                // Update progress bar
+                progressBar.className = `h-full ${progressColor} rounded-full`;
+                progressBar.style.animation = 'shrink 5s linear forwards';
                 
                 // Show toast
                 toast.classList.remove('translate-x-full');
                 toast.classList.add('translate-x-0');
                 
                 // Auto hide after 5 seconds
-                setTimeout(() => {
+                notificationTimeout = setTimeout(() => {
                     hideNotification();
                 }, 5000);
             }
@@ -442,6 +498,11 @@
                 const toast = document.getElementById('notificationToast');
                 toast.classList.remove('translate-x-0');
                 toast.classList.add('translate-x-full');
+                
+                // Clear timeout
+                if (notificationTimeout) {
+                    clearTimeout(notificationTimeout);
+                }
             }
 
             // Upload handler
@@ -454,7 +515,14 @@
                     const file = e.target.files[0];
                     if (!file) return;
                     
-                    console.log('File selected:', file.name);
+                    console.log('📁 File selected:', file.name, 'Size:', file.size, 'Type:', file.type);
+                    
+                    // Validate file
+                    if (!file.type.startsWith('image/')) {
+                        console.error('❌ Invalid file type:', file.type);
+                        showNotification('Invalid File', 'Please upload an image file (JPG, PNG, etc.)', 'error');
+                        return;
+                    }
                     
                     // Show loading
                     if (loadingSpinner) loadingSpinner.style.display = 'block';
@@ -464,14 +532,28 @@
                     formData.append('image', file);
                     
                     try {
-                        // Send to API
+                        console.log('🚀 Sending request to API...');
+                        
+                        // Send to API with timeout
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+                        
                         const response = await fetch('http://127.0.0.1:5000/api/predict', {
                             method: 'POST',
-                            body: formData
+                            body: formData,
+                            signal: controller.signal
                         });
                         
+                        clearTimeout(timeoutId);
+                        
+                        console.log('📊 Response status:', response.status);
+                        
+                        if (!response.ok) {
+                            throw new Error(`Server error: ${response.status} ${response.statusText}`);
+                        }
+                        
                         const result = await response.json();
-                        console.log('Result:', result);
+                        console.log('✅ API Response:', result);
                         
                         // Hide loading
                         if (loadingSpinner) loadingSpinner.style.display = 'none';
@@ -481,11 +563,13 @@
                             const confidence = result.prediction.confidence;
                             const canPredict = confidence >= 50;
                             
+                            console.log('🎯 Confidence:', confidence, '| Can predict:', canPredict);
+                            
                             // Check for low confidence warning
                             if (result.warning) {
                                 const warningType = result.warning.severity === 'error' ? 'error' : 'warning';
+                                console.warn('⚠️ Warning:', result.warning);
                                 showNotification(result.warning.message, result.warning.details, warningType);
-                                console.warn('Low confidence warning:', result.warning);
                             }
                             
                             // Populate cards with prediction results
@@ -496,6 +580,7 @@
                             
                             if (!canPredict) {
                                 // Show "Cannot predict" message
+                                console.log('⛔ Cannot predict - showing error message');
                                 if (card1) {
                                     card1.innerHTML = `
                                         <div class="text-[24px] font-semibold mb-4">Prediction Result</div>
@@ -551,23 +636,47 @@
                                     `;
                                 }
                             }
-                            
                             // Show Result section
                             if (resultSection) resultSection.style.display = 'block';
                             
                             // Scroll to result
                             if (resultSection) resultSection.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Show success notification
+                            showNotification('✅ Analysis Complete', 'Solar panel analysis completed successfully!', 'success');
                         } else {
-                            showNotification('Prediction Failed', result.error || 'Failed to analyze the image', 'error');
+                            console.error('❌ API returned error:', result.error);
+                            if (loadingSpinner) loadingSpinner.style.display = 'none';
+                            showNotification('❌ Prediction Failed', result.error || 'Failed to analyze the image. Please try again.', 'error');
                         }
                     } catch (error) {
-                        console.error('Error:', error);
+                        console.error('🔥 CATCH ERROR:', error.name, error.message);
                         if (loadingSpinner) loadingSpinner.style.display = 'none';
-                        showNotification('Connection Error', 'Cannot connect to the prediction API. Please make sure the server is running.', 'error');
+                        
+                        // Determine error type
+                        let errorTitle = '⚠️ Error';
+                        let errorMessage = 'An error occurred';
+                        
+                        if (error.name === 'AbortError') {
+                            errorTitle = '⏱️ Request Timeout';
+                            errorMessage = 'The request took too long. Please try with a smaller image or check your connection.';
+                        } else if (error instanceof TypeError && error.message.includes('fetch')) {
+                            errorTitle = '🔌 Connection Error';
+                            errorMessage = 'Cannot connect to the API server. Make sure the server is running on http://127.0.0.1:5000';
+                        } else if (error instanceof SyntaxError) {
+                            errorTitle = '📝 Response Error';
+                            errorMessage = 'Invalid response from server. Please try again.';
+                        } else {
+                            errorTitle = '❌ Error';
+                            errorMessage = error.message || 'An unexpected error occurred.';
+                        }
+                        
+                        console.error(`${errorTitle}: ${errorMessage}`);
+                        showNotification(errorTitle, errorMessage, 'error');
                     }
                 });
             } else {
-                console.error('imageInput not found!');
+                console.error('❌ imageInput element not found in DOM!');
             }
             
             // Contact Form Handler
