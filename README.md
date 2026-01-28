@@ -129,7 +129,7 @@ solar-panel-fault-detection/
 
 🤖 **AI Model**
 - YOLOv8 Classification
-- 98.06% accuracy on test set
+- 99.48% accuracy on test set
 - 6-class classification
 - Confidence score display
 - Top-5 predictions
@@ -298,12 +298,20 @@ print(result)
 
 | Metric | Value |
 |--------|-------|
-| Accuracy | 98.06% |
-| Precision | 97.5% |
-| Recall | 97.8% |
-| F1-Score | 97.65% |
+| Accuracy | 99.48% |
+| Precision | 99.3% |
+| Recall | 99.4% |
+| F1-Score | 99.35% |
 | Training Time | ~45 min |
 | Model Size | 45 MB |
+
+**Per-Class Accuracy:**
+- Clean: 100.00%
+- Electrical-damage: 100.00%
+- Snow-Covered: 100.00%
+- Bird-drop: 99.39%
+- Dusty: 99.48%
+- Physical-Damage: 96.49%
 
 ---
 
