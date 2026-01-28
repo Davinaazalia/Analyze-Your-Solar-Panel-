@@ -2,13 +2,14 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies untuk OpenCV dan ultralytics
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
+    libgomp1 \
     libsm6 \
-    libxrender1 \
     libxext6 \
+    libxrender-dev \
+    libpython3-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only production requirements
