@@ -1,0 +1,40 @@
+numpy
+opencv-python
+scikit-image
+scikit-learn
+matplotlib
+tqdm
+
+torch
+torchvision
+torchaudio
+
+timm
+einops
+
+albumentations
+pillow
+
+
+# https://www.youtube.com/watch?v=wQ8BIBpya2k
+tensorflow
+Keras
+pandas
+imutils
+scikit-learn
+matplotlib
+seaborn
+streamlit==1.40.1
+streamlit-option-menu==0.3.12
+plotly==5.24.1
+
+# Production Inference
+ultralytics==8.3.43
+
+# Web API Integration
+Flask>=3.0.0
+flask-cors>=4.0.0
+
+# Additional utilities
+Pillow>=10.0.0
+pandas>=2.0.0

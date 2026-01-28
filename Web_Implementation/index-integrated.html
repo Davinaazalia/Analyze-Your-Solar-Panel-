@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        <title>Solar Panel</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com">
+        
+            tailwind.config = {
+                theme: {
+                extend: {
+                    fontFamily: {
+                    sans: ['"DM Sans"', 'sans-serif'],
+                    },
+                },
+                },
+            }
+        </script>
+        <!-- CSS untuk styling hasil prediksi -->
+        <link rel="stylesheet" href="./panel-styles.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            />
+        <style>
+            /* Custom upload zone styling */
+            .upload-zone {
+                border: 2px dashed #d0d0d0;
+                border-radius: 12px;
+                padding: 40px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background-color: #f9fafb;
+            }
+
+            .upload-zone:hover {
+                border-color: #29344A;
+                background-color: #f0f5ff;
+            }
+
+            .upload-zone.drag-active {
+                border-color: #29344A;
+                background-color: #e3f2fd;
+            }
+
+            .upload-icon {
+                font-size: 48px;
+                color: #29344A;
+                margin-bottom: 12px;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .analysis-loading {
+                text-align: center;
+                padding: 40px;
+            }
+
+            .spinner {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                border: 4px solid #f0f0f0;
+                border-top: 4px solid #29344A;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+    <body class="font-sans bg-white">
+
+    <!-- hero section -->
+        <nav class="fixed top-0 left-0 w-full z-50 bg-white px-8 py-4 flex items-center justify-between">
+            <!-- Logo -->
+           <div class="flex items-center gap-2">
+                <img src="./images/logo1.png" alt="logo" class="h-6 w-auto" />
+                <span class="text-gray-800 text-[20px] font-medium">
+                SolarEye
+                </span>
+            </div>
+
+            <!-- Navbar Menu -->
+            <ul class="flex gap-10 text-gray-700">
+                <li class="cursor-pointer hover:text-[#29344A] transition">
+                Analyze Panel
+                </li>
+                <li class="cursor-pointer hover:text-[#29344A] transition">
+                History
+                </li>
+            </ul>
+
+            <!-- Contact Button -->
+            <button class="bg-[#29344A] text-[16px] px-5 py-2 text-white rounded-full hover:opacity-90 transition">
+                Contact Us
+            </button>
+         </nav>
+        
+        <!-- background -->
+        <section class="pt-20 flex justify-center">
+         <div class="relative w-[1417px] h-[790px] rounded-[15px] overflow-hidden bg-[url('./images/hero.png')] bg-cover bg-center">
+         <div class="absolute inset-0 bg-black/10"></div>
+         <div class="relative z-10 flex flex-col items-center justify-center h-full pt-[80px] text-center text-white px-6">
+            <div class="mb-24 mt-2 p-6 space-y-8 max-w-4xl">
+                <button class=" mt-4 bg-white/20 backdrop-blur-md text-[18 px] px-4 py-2 text-black rounded-full">
+                    <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i> Solar Energy</button>
+                <h1 class="text-6xl text-white leading-tight font-normal" >
+                    Check the Condition of Your 
+                    <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal">
+                        Solar Panel
+                    </span>
+                    in Just Seconds
+                </h1>
+                <p class="text-black-200 text-[20px] mt-4  leading-realxed">
+                    Upload your solar panel image and get a full analysis: cleanliness level, potential damage, and recommended actions. Fast, accurate, and easy to use
+                </p>
+                <a href="#Analyze" class="inline-block">
+                    <button class="mt-4 bg-[#29344A] text-[22px] px-9 py-2  text-white rounded-full hover:opacity-90 transition"> 
+                        Get Started 
+                         <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-[12px]"></i>
+                    </button>
+                </a>
+            </div>
+        </section>
+
+<!-- why us -->
+        <section id="Why" class="py-55 px-12 mb-48 mt-8">
+            <button class="mt-16 bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-4 py-3 text-black rounded-full border border-[#B6B6B6]">
+                <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i>
+                 About
+                </button>
+            <div class = "grid grid-cols-2 items-center py-4">
+                <h2 class=" text-[64px] font-normal mb-4 mt-2">
+                    Why
+                        <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal"> 
+                        SolarEye
+                        </span>
+                </h2>
+                <p class =" text-left text-2xl py-2 mt-2 align-items"> 
+                    SolarEye transforms images into meaningful insights, empowering you to maintain clean, efficient solar panels and prevent energy loss caused by dirt, damage, or environmental conditions.
+                </p>
+            </div>
+        <div class="bg-gray-200 rounded-[15px] px-[10px]">
+        <div class="grid grid-cols-3 gap-[10px] py-4">
+
+            <!-- CARD 1 -->
+            <div class="relative overflow-hidden rounded-[10px]">
+            <img 
+                src="./images/why us 1.png"
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-semibold">AI-powered</h3>
+                <p class="text-sm text-gray-200">image analysis</p>
+            </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="relative overflow-hidden rounded-[10px]">
+            <img 
+                src="./images/whyus2.png"
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-semibold">Smart Detection</h3>
+                <p class="text-sm text-gray-200">real-time system</p>
+            </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="relative overflow-hidden rounded-[10px]">
+            <img 
+                src="./images/whyus3.png"
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-semibold">Accurate Result</h3>
+                <p class="text-sm text-gray-200">high precision</p>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="flex justify-center mt-4">
+            <button class="  mt-8 bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-3 py-3 text-black rounded-full border border-[#B6B6B6]  ">
+            <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i>
+                Powered by Intelligent Image Analysis
+            </button>
+        </div>
+        </section>
+
+  
+        <!-- Analyze Section -->
+        <section id="Analyze" class="pt-18 px-12 py-20">
+            <div class="max-w-6xl mx-auto">
+                <!-- Title -->
+                <div class="text-center mb-16">
+                    <button class="bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-4 py-3 text-black rounded-full border border-[#B6B6B6] mb-8">
+                        <i class="fa-solid fa-circle text-[12px] px-2 text-[#29344A]"></i>
+                        Analyze
+                    </button>
+                    <h1 class="text-6xl text-black leading-tight font-normal mb-4">
+                        Analyze Your 
+                        <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal">
+                            Solar Panel Instantly
+                        </span>
+                    </h1>
+                </div>
+
+                <!-- Upload Zone & Results Grid -->
+                <div class="grid grid-cols-2 gap-12 items-start">
+                    
+                    <!-- Upload Area -->
+                    <div>
+                        <div class="upload-zone" id="uploadZone">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Upload Your Solar Panel Image</h3>
+                            <p class="text-gray-600 mb-4">Drag & drop or click to upload</p>
+                            <p class="text-sm text-gray-500">Supported: JPG, PNG, WebP</p>
+                            <input type="file" id="imageInput" accept="image/*" class="hidden">
+                        </div>
+
+                        <!-- Image Preview -->
+                        <div class="mt-6">
+                            <img id="imagePreview" class="w-full rounded-lg shadow-lg hidden" alt="Preview">
+                        </div>
+
+                        <!-- Loading State -->
+                        <div id="loadingSpinner" class="hidden">
+                            <div class="analysis-loading">
+                                <div class="spinner"></div>
+                                <p class="text-gray-600 mt-4">Analyzing your panel...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Area -->
+                    <div>
+                        <div id="resultContainer" class="hidden">
+                            <!-- Result akan di-render di sini -->
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="emptyState" class="text-center py-16">
+                            <div class="text-6xl mb-4">📋</div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Ready for Analysis</h3>
+                            <p class="text-gray-600">Upload an image to see detailed panel analysis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Boxes -->
+                <div class="mt-20 grid grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
+                        <div class="text-3xl mb-2">✅</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Instant Detection</h4>
+                        <p class="text-sm text-gray-700">Get real-time analysis in seconds</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg border border-orange-200">
+                        <div class="text-3xl mb-2">🎯</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Accurate Results</h4>
+                        <p class="text-sm text-gray-700">98.06% accuracy with AI model</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+                        <div class="text-3xl mb-2">💡</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Smart Recommendations</h4>
+                        <p class="text-sm text-gray-700">Get maintenance tips based on analysis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Display Section -->
+        <section id="Result" class="py-20 px-12 mb-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto">
+                <button class="bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-4 py-3 text-black rounded-full border border-[#B6B6B6] mb-8">
+                    <i class="fa-solid fa-circle text-[12px] px-2 text-[#29344A]"></i>
+                    Result Details
+                </button>
+                <h2 class="text-5xl font-normal mb-8">
+                    Understanding Your
+                    <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal"> 
+                    Analysis Result
+                    </span>
+                </h2>
+
+                <!-- Class Information Cards -->
+                <div id="classInfo" class="grid grid-cols-2 gap-6 mt-12">
+                    <!-- Will be populated dynamically or show default info -->
+                    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-500">
+                        <h3 class="text-2xl font-bold text-green-600 mb-2">✅ Clean</h3>
+                        <p class="text-gray-700 mb-3">Panel in optimal condition</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• No maintenance needed</li>
+                            <li>• Maximum efficiency</li>
+                            <li>• Check every 3 months</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-yellow-500">
+                        <h3 class="text-2xl font-bold text-yellow-600 mb-2">⚠️ Dusty</h3>
+                        <p class="text-gray-700 mb-3">Panel covered with dust/dirt</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Clean immediately</li>
+                            <li>• Can lose 25% efficiency</li>
+                            <li>• Schedule maintenance</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-red-500">
+                        <h3 class="text-2xl font-bold text-red-600 mb-2">❌ Damaged</h3>
+                        <p class="text-gray-700 mb-3">Physical or electrical damage</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Call technician immediately</li>
+                            <li>• Safety risk detected</li>
+                            <li>• Needs professional repair</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow border-l-4 border-blue-500">
+                        <h3 class="text-2xl font-bold text-blue-600 mb-2">❄️ Snow-Covered</h3>
+                        <p class="text-gray-700 mb-3">Panel covered with snow</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Remove carefully</li>
+                            <li>• Output drastically reduced</li>
+                            <li>• Use proper tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="Contact" class="px-12 mb-24">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex justify-center mb-8">
+                    <button class="bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-6 py-3 text-black rounded-full border border-[#B6B6B6]">
+                        <i class="fa-solid fa-circle text-[12px] px-2 text-[#29344A]"></i>
+                        Contact
+                    </button>
+                </div>
+                <h2 class="text-5xl text-center font-normal mb-12">
+                    Get in Touch
+                </h2>
+
+                <form class="space-y-4 max-w-2xl mx-auto">
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#29344A]">
+                    <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#29344A]">
+                    <input type="text" placeholder="Subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#29344A]">
+                    <textarea placeholder="Message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#29344A]"></textarea>
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-[#29344A] text-[18px] px-12 py-3 text-white rounded-full hover:opacity-90 transition">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bottom-0 left-0 w-full bg-[#29344A] text-white px-8 py-8">
+            <div class="max-w-6xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <img src="./images/logo1.png" alt="logo" class="h-6 w-auto" />
+                    <span class="text-[18px] font-medium">SolarEye</span>
+                </div>
+                <p class="text-sm text-gray-300">© 2026 SolarEye System. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-yellow-400 transition">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="hover:text-yellow-400 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="hover:text-yellow-400 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    <!-- JavaScript untuk integrasi API -->
+    <script src="./panel-predictor.js"></script>
+    </body>
+</html>

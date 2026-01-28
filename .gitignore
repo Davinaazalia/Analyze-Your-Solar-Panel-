@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv
+venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+temp_input.jpg
+test_random.jpg
+test_doc.jpg
+temp/
+*.tmp
+
+# Model weights (optional - uncomment if models are large)
+# models/saved_models/*.pt
+# *.pt
+
+# Logs
+debug.log
+*.log
+
+# Node modules (if using Vercel)
+node_modules/
+.next/
+out/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Data
+data/yolo_dataset/
+runs/
+
+# Cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Vercel
+.vercel

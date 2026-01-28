@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+        <title>Solar Panel</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./panel-styles.css">
+        <script src="https://cdn.tailwindcss.com">
+        
+            tailwind.config = {
+                theme: {
+                extend: {
+                    fontFamily: {
+                    sans: ['"DM Sans"', 'sans-serif'],
+                    },
+                },
+                },
+            }
+
+
+        </script>
+        <!--
+        Tailwind quick-notes (inline reference):
+        - w-full: width 100% of container
+        - h-screen: height equals viewport (100vh)
+        - max-w-6xl: max width ~72rem (1152px)
+        - mx-auto: horizontal auto margin (centers block)
+        - px-4 / py-2: padding-x 1rem / padding-y 0.5rem (Tailwind scale)
+        - flex / grid: set display flex / grid
+        - items-center: align items vertically centered (flex/grid)
+        - justify-between: space between first/last items
+        - gap-4: spacing between children (1rem)
+        - rounded-lg / rounded-full: large radius / pill shape
+        - shadow / shadow-lg: drop shadow (normal / larger)
+        - text-sm / text-lg: small / large font size (scale)
+        - font-bold: bold text weight
+        - bg-blue-500 / text-white: background blue-500 / white text
+        - hover:bg-blue-600: background shifts to blue-600 on hover
+        - transition duration-200 ease-in-out: 200ms smooth hover/focus transitions
+        - border border-gray-200: 1px light gray border
+        -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            />
+    </head>
+    <body class="font-sans bg-white">
+
+    <!-- hero section -->
+        <nav class="fixed top-0 left-0 w-full z-50 bg-white px-8 py-4 flex items-center justify-between">
+            <!-- Logo -->
+           <div class="flex items-center gap-2">
+                <img src="./images/logo1.png" alt="logo" class="h-6 w-auto" />
+                <span class="text-gray-800 text-[20px] font-medium">
+                SolarEye
+                </span>
+            </div>
+
+            <!-- Navbar Menu -->
+            <ul class="flex gap-10 text-gray-700">
+                <li class="cursor-pointer hover:text-[#29344A] transition">
+                Analyze Panel
+                </li>
+                <li class="cursor-pointer hover:text-[#29344A] transition">
+                History
+                </li>
+            </ul>
+
+            <!-- Contact Button -->
+            <button class="bg-[#29344A] text-[16px] px-5 py-2 text-white rounded-full hover:opacity-90 transition">
+                Contact Us
+            </button>
+         </nav>
+        
+        <!-- background -->
+        <section class="pt-20 flex justify-center">
+         <div class="relative w-[1417px] h-[790px] rounded-[15px] overflow-hidden bg-[url('./images/hero.png')] bg-cover bg-center">
+         <div class="absolute inset-0 bg-black/10"></div>
+         <div class="relative z-10 flex flex-col items-center justify-center h-full pt-[80px] text-center text-white px-6">
+            <!-- <div class=" mb-4 mt-4 bg-white  rounded-xl shadow-lg p-6 space-y-4 max-w-md mb-4"> -->
+            <div class="mb-24 mt-2 p-6 space-y-8 max-w-4xl">
+            <!-- flex → aktifkan layout flex
+            items-center → tengah atas-bawah
+            justify-center → tengah kiri-kanan
+            text-center → teks rata tengah -->
+                <button class=" mt-4 bg-white/20 backdrop-blur-md text-[18 px] px-4 py-2 text-black rounded-full">
+                    <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i> Solar Energy</button>
+            <!-- head1 -->
+                <h1 class="text-6xl text-white leading-tight font-normal" >
+                    Check the Condition of Your 
+                    <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal">
+                        Solar Panel
+                    </span>
+                    in Just Seconds
+                </h1>
+                <p class="text-black-200 text-[20px] mt-4  leading-realxed">
+                    Upload your solar panel image and get a full analysis: cleanliness level, potential damage, and recommended actions. Fast, accurate, and easy to use
+                </p>
+    
+                <button class="mt-4 bg-[#29344A] text-[22px] px-9 py-2  text-white rounded-full "> 
+                    Get Started 
+                     <i class="fa-solid fa-arrow-right transition-transform duration-300 group-hover:translate-x-1 text-[18px] font-normal px-4"></i>
+                </button>
+            <!-- text-4xl → judul besar
+            font-bold → tebel
+            text-Blaack-200 → abu-abu terang
+            mt-4 → jarak atas
+            leading-relaxed → jarak antar baris -->
+            <!-- p-6 → padding semua sisi
+            px-6 → padding kiri kanan
+            py-3 → padding atas bawah
+            mt-6 → jarak dari atas -->
+            </div>
+        </section>
+
+<!-- why us -->
+        <section id="Why" class="py-55 px-12 mb-48 mt-8">
+            <button class="mt-16 bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-4 py-3 text-black rounded-full border border-[#B6B6B6]">
+                <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i>
+                 About
+                </button>
+            <div class = "grid grid-cols-2 items-center py-4">
+                <h2 class=" text-[64px] font-normal mb-4 mt-2">
+                    Why
+                        <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal"> 
+                        SolarEye
+                        </span>
+                </h2>
+                <p class =" text-left text-2xl py-2 mt-2 align-items"> 
+                    SolarEye transforms images into meaningful insights, empowering you to maintain clean, efficient solar panels and prevent energy loss caused by dirt, damage, or environmental conditions.
+                </p>
+            </div>
+        <div class="bg-gray-200 rounded-[15px] px-[10px]">
+        <div class="grid grid-cols-3 gap-[10px] py-4">
+
+            <!-- CARD 1 -->
+            <div class="relative overflow-hidden rounded-[10px]">
+            <img 
+                src="./images/why us 1.png"
+                class="w-full h-full object-cover"
+            />
+
+            <!-- overlay (opsional biar teks kebaca) -->
+            <div class="absolute inset-0 bg-black/30"></div>
+
+            <!-- text -->
+            <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-semibold">AI-powered</h3>
+                <p class="text-sm text-gray-200">image analysis</p>
+            </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="relative overflow-hidden rounded-[10px]">
+            <img 
+                src="./images/whyus2.png"
+                class="w-full h-full object-cover"
+            />
+
+            <div class="absolute inset-0 bg-black/30"></div>
+
+            <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-semibold">Smart Detection</h3>
+                <p class="text-sm text-gray-200">real-time system</p>
+            </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="relative overflow-hidden rounded-[10px]">
+            <img 
+                src="./images/whyus3.png"
+                class="w-full h-full object-cover"
+            />
+
+            <div class="absolute inset-0 bg-black/30"></div>
+
+            <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-semibold">Accurate Result</h3>
+                <p class="text-sm text-gray-200">high precision</p>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="flex justify-center mt-4">
+            <button class="  mt-8 bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-3 py-3 text-black rounded-full border border-[#B6B6B6]  ">
+            <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i>
+                Powered by Intelligent Image Analysis
+            </button>
+        </div>
+        </section>
+
+  
+        <!-- background -->
+        <section id="Analyze" class="pt-18 flex justify-center">
+         <div class="relative w-[1417px] h-[790px] rounded-[15px] overflow-hidden bg-[url('./images/analyze.png')] bg-cover bg-center">
+         <div class="absolute inset-0 bg-black/10">
+         <div class="relative z-10 flex flex-col items-center justify-center h-full pt-[80px] text-center text-white px-6">
+            <!-- <div class=" mb-4 mt-4 bg-white  rounded-xl shadow-lg p-6 space-y-4 max-w-md mb-4"> -->
+            <div class="mb-24 mt-2 p-6 space-y-8 max-w-4xl">
+            <!-- flex → aktifkan layout flex
+            items-center → tengah atas-bawah
+            justify-center → tengah kiri-kanan
+            text-center → teks rata tengah -->
+            <!-- head1 -->
+                <h1 class="text-6xl text-black leading-tight font-normal" >
+                    Analyze Your Solar Panel Instantly
+                </h1>
+                <div id="uploadZone" data-drop-zone class="upload-zone mt-2" style="border: 2px dashed #d0d0d0; border-radius: 12px; padding: 30px; background-color: rgba(255, 255, 255, 0.216); cursor: pointer; transition: all 0.3s ease;" onclick="document.getElementById('imageInput').click();">
+                    <p class="text-gray-700 text-lg font-semibold mb-2">Klik untuk upload atau drag & drop</p>
+                    <p class="text-gray-500 text-sm">Supported: JPG, PNG, WebP</p>
+                    <input type="file" id="imageInput" data-file-input accept="image/*" style="display:none;">
+                </div>
+                <!-- Better Loading Spinner -->
+                <div id="loadingSpinner" data-loading style="display:none; text-align: center; padding: 60px 40px; background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(250,250,250,0.95) 100%); border-radius: 16px; backdrop-filter: blur(10px);">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 20px;">
+                        <div class="spinner-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #29344A; animation: pulse 1.4s ease-in-out infinite;"></div>
+                        <div class="spinner-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #29344A; animation: pulse 1.4s ease-in-out infinite; animation-delay: 0.2s;"></div>
+                        <div class="spinner-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #29344A; animation: pulse 1.4s ease-in-out infinite; animation-delay: 0.4s;"></div>
+                    </div>
+                    <p class="text-gray-700 mt-4 font-semibold text-lg">Analyzing your panel...</p>
+                    <p class="text-gray-500 text-sm mt-2">This usually takes 3-5 seconds</p>
+                </div>
+                <style>
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                    @keyframes pulse {
+                        0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
+                        30% { opacity: 1; transform: scale(1.2); }
+                    }
+                    
+                    /* === CUSTOMIZATION GUIDE ===
+                    
+                    LOADING SPINNER (.spinner-dot):
+                    - background: #29344A → warna dot
+                    - width/height: 12px → ukuran dot
+                    - animation: pulse 1.4s → kecepatan animasi (lebih kecil = lebih cepat)
+                    
+                    NOTIFICATION TOAST (#notificationToast):
+                    - top-5 right-5 → posisi (ubah ke top-5 left-5 untuk kiri)
+                    - max-w-md → lebar maksimal (ubah ke max-w-lg untuk lebih lebar)
+                    - duration-500 → kecepatan slide animasi
+                    - border-l-4 border-green-500 → warna border
+                    
+                    TYPE COLORS dalam showNotification():
+                    - Success: border-green-500, text-green-500
+                    - Error: border-red-500, text-red-500  
+                    - Warning: border-yellow-500, text-yellow-500
+                    
+                    === END CUSTOMIZATION GUIDE ===
+                    */
+                </style>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="Result" class="py-55 px-12 mb-48 mt-8" style="display:none;">
+            <button class="mt-16 bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-4 py-3 text-black rounded-full border border-[#B6B6B6]">
+            <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i>
+                Result
+            </button>
+                <div class = "grid grid-cols-2 items-center py-4">
+                    <h2 class=" text-[64px] font-normal mb-4 mt-2">
+                        Check
+                            <span class="bg-gradient-to-r from-black via-[#4C4C4C] to-black bg-clip-text text-transparent font-normal"> 
+                            Result
+                            </span>
+                    </h2>
+                    <p class =" text-left text-[32px] py-2 mt-2 align-items"> 
+                        Power your home with clean solar energy
+                    </p>
+                </div>
+        <div class="bg-gray-200 w-full rounded-[15px] px-2 py-2 ">
+            <div class = "grid grid-cols-2 gap-[10px] ">
+                <div id="resultCard1" class="px-10 pt-8 pb-64 bg-[#29344A] rounded-lg text-white text-[32px] font-normal">
+                    Card 1
+                    <div class="font-normal"></div>
+                </div>
+                <div id="resultCard2" class="px-10 pt-8 pb-64  bg-gradient-to-b from-white to-#D9D9D9 rounded-lg text-[32px] font-normal">
+                    Card 2
+                    <div class="font-normal"></div>
+                </div>
+                    <div id="resultCard3" class="px-10 pt-8 pb-64   bg-gradient-to-b from-white to-#D9D9D9 rounded-lg text-[32px] font-normal">
+                    Card 3
+                    <div class="font-normal"></div>
+                </div>
+                    <div id="resultCard4" class="px-10 pt-8 pb-64 bg-[#29344A] rounded-lg text-white rounded-lg text-[32px] font-normal">
+                    Card 4
+                    <div class="font-normal"></div>
+                </div>
+
+        </section>
+
+        <section id="Contact" class="px-12 py-16 mb-64 ">
+            <div class="flex justify-center mt-4">
+            <button class="align-items justify-center mb-8 bg-[#B6B6B6]/20 backdrop-blur-md text-[20px] px-6 py-3 text-black rounded-full border border-[#B6B6B6]">
+            <i class="fa-solid fa-circle text-[12px] px-2 justify-center items-center text-[#29344A]"></i>
+                Contact
+            </button>
+            </div>
+            <div class="text-[64px] flex justify-center font-normal mb-4 mt-2 ">
+            Contact Us
+            <div class="font-normal"></div>
+            </div>
+            <div class="flex justify-center">
+            <form id="contactForm" class="flex flex-col gap-4">
+
+            <input 
+                type="text" 
+                id="contactName" 
+                placeholder="Name" 
+                required
+                class="px-4 py-3 text-[18px] border border-[#D9D9D9] rounded-xl w-[500px] text-[18px] text-gray-800 focus:outline-none focus:border-[#29344A] transition"
+            />
+            
+            <input 
+                type="email" 
+                id="contactEmail" 
+                placeholder="Email" 
+                required
+                class="px-4 py-3 text-[18px] border border-[#D9D9D9] rounded-xl w-[500px] text-[18px] text-gray-800 focus:outline-none focus:border-[#29344A] transition"
+            />
+            
+            <input 
+                type="text" 
+                id="contactSubject" 
+                placeholder="Subject" 
+                required
+                class="px-4 py-3 text-[18px] border border-[#D9D9D9] rounded-xl w-[500px] text-[18px] text-gray-800 focus:outline-none focus:border-[#29344A] transition"
+            />
+            
+            <textarea 
+                id="contactMessage" 
+                placeholder="Message" 
+                rows="5" 
+                required
+                class="px-4 py-3 text-[18px] border border-[#D9D9D9] rounded-xl w-[500px] text-[18px] text-gray-800 focus:outline-none focus:border-[#29344A] transition resize-none"
+            ></textarea>
+            
+            </form>
+            </div>
+            <div class="flex justify-center">
+            <button type="submit" form="contactForm" class="mt-16 bg-[#29344A] text-[22px] px-9 py-2 text-white rounded-full hover:opacity-90 transition cursor-pointer">
+                Send
+            </button>
+        </div>
+        </section>
+
+
+        <footer class=" bottom-0 left-0 w-full z-50 bg-white px-8 py-4 flex items-center justify-between">
+            <!-- Logo -->
+           <div class="flex items-center gap-2">
+                <img src="./images/logo1.png" alt="logo" class="h-6 w-auto" />
+                <span class="text-gray-800 text-[20px] font-medium">
+                SolarEye
+                </span>
+            </div>
+
+            <!-- Navbar Menu -->
+            <ul class="flex gap-10 text-gray-700">
+                <li class="cursor-pointer hover:text-[#29344A] transition">
+                Sanes
+                </li>
+            </ul>
+
+            <!-- Contact Button -->
+            <button class=" bg-[#B6B6B6]/20 backdrop-blur-md text-[12px] px-4 py-2 text-black rounded-full border border-[#B6B6B6]">
+                © 2026 SolarEye System. All rights reserved.
+            </button>
+
+        </footer>
+
+        <!-- Custom Notification Toast -->
+        <div id="notificationToast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-500 ease-out">
+            <div class="bg-white rounded-lg shadow-2xl border-l-4 border-green-500 p-6 max-w-md">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <svg id="toastIcon" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="ml-4 flex-1">
+                        <h3 id="toastTitle" class="text-lg font-semibold text-gray-900">Success!</h3>
+                        <p id="toastMessage" class="mt-1 text-sm text-gray-600">Your operation was successful.</p>
+                    </div>
+                    <button onclick="hideNotification()" class="ml-4 flex-shrink-0 text-gray-400 hover:text-gray-600">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Custom Notification Function
+            function showNotification(title, message, type = 'success') {
+                const toast = document.getElementById('notificationToast');
+                const toastTitle = document.getElementById('toastTitle');
+                const toastMessage = document.getElementById('toastMessage');
+                const toastIcon = document.getElementById('toastIcon');
+                const toastContainer = toast.firstElementChild;
+                
+                // Set content
+                toastTitle.textContent = title;
+                toastMessage.textContent = message;
+                
+                // Set colors based on type
+                if (type === 'success') {
+                    toastContainer.className = 'bg-white rounded-lg shadow-2xl border-l-4 border-green-500 p-6 max-w-md';
+                    toastIcon.className = 'h-8 w-8 text-green-500';
+                    toastIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />';
+                } else if (type === 'error') {
+                    toastContainer.className = 'bg-white rounded-lg shadow-2xl border-l-4 border-red-500 p-6 max-w-md';
+                    toastIcon.className = 'h-8 w-8 text-red-500';
+                    toastIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />';
+                } else if (type === 'warning') {
+                    toastContainer.className = 'bg-white rounded-lg shadow-2xl border-l-4 border-yellow-500 p-6 max-w-md';
+                    toastIcon.className = 'h-8 w-8 text-yellow-500';
+                    toastIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />';
+                }
+                
+                // Show toast
+                toast.classList.remove('translate-x-full');
+                toast.classList.add('translate-x-0');
+                
+                // Auto hide after 5 seconds
+                setTimeout(() => {
+                    hideNotification();
+                }, 5000);
+            }
+            
+            function hideNotification() {
+                const toast = document.getElementById('notificationToast');
+                toast.classList.remove('translate-x-0');
+                toast.classList.add('translate-x-full');
+            }
+
+            // Upload handler
+            const fileInput = document.getElementById('imageInput');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const resultSection = document.getElementById('Result');
+            
+            if (fileInput) {
+                fileInput.addEventListener('change', async function(e) {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    
+                    console.log('File selected:', file.name);
+                    
+                    // Show loading
+                    if (loadingSpinner) loadingSpinner.style.display = 'block';
+                    
+                    // Create FormData
+                    const formData = new FormData();
+                    formData.append('image', file);
+                    
+                    try {
+                        // Send to API
+                        const response = await fetch('http://127.0.0.1:5000/api/predict', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const result = await response.json();
+                        console.log('Result:', result);
+                        
+                        // Hide loading
+                        if (loadingSpinner) loadingSpinner.style.display = 'none';
+                        
+                        if (result.success) {
+                            // Check if confidence is too low to predict
+                            const confidence = result.prediction.confidence;
+                            const canPredict = confidence >= 50;
+                            
+                            // Check for low confidence warning
+                            if (result.warning) {
+                                const warningType = result.warning.severity === 'error' ? 'error' : 'warning';
+                                showNotification(result.warning.message, result.warning.details, warningType);
+                                console.warn('Low confidence warning:', result.warning);
+                            }
+                            
+                            // Populate cards with prediction results
+                            const card1 = document.getElementById('resultCard1');
+                            const card2 = document.getElementById('resultCard2');
+                            const card3 = document.getElementById('resultCard3');
+                            const card4 = document.getElementById('resultCard4');
+                            
+                            if (!canPredict) {
+                                // Show "Cannot predict" message
+                                if (card1) {
+                                    card1.innerHTML = `
+                                        <div class="text-[24px] font-semibold mb-4">Prediction Result</div>
+                                        <div class="text-center">
+                                            <i class="fas fa-exclamation-triangle text-[48px] text-red-500 mb-3"></i>
+                                            <div class="text-[24px] font-semibold text-red-600 mb-3">Cannot Predict</div>
+                                            <div class="text-[16px] text-gray-600">
+                                                The image does not appear to be a solar panel. Please upload a clear image of a solar panel for accurate analysis.
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                                
+                                // Clear other cards
+                                if (card2) card2.innerHTML = '<div class="text-gray-500">No data available</div>';
+                                if (card3) card3.innerHTML = '<div class="text-gray-500">No data available</div>';
+                                if (card4) card4.innerHTML = '<div class="text-gray-500">No data available</div>';
+                            } else {
+                                // Normal prediction display
+                                // Card 1: Prediction Class & Confidence
+                                if (card1) {
+                                    const confidenceColor = confidence >= 70 ? '#27ae60' : '#f39c12';
+                                    card1.innerHTML = `
+                                        <div class="text-[24px] font-semibold mb-4">Prediction Result</div>
+                                        <div class="text-[40px] font-bold mb-2">${result.prediction.class}</div>
+                                        <div class="text-[18px]">Confidence: <span style="color: ${confidenceColor}; font-weight: bold;">${confidence}%</span></div>
+                                    `;
+                                }
+                                
+                                // Card 2: Status & Description
+                                if (card2) {
+                                    card2.innerHTML = `
+                                        <div class="text-[24px] font-semibold mb-4 text-gray-800">Status</div>
+                                        <div class="text-[32px] font-bold mb-2" style="color: ${result.info.color}">${result.info.status}</div>
+                                        <div class="text-[16px] text-gray-700">${result.info.description}</div>
+                                    `;
+                                }
+                                
+                                // Card 3: Risk Level
+                                if (card3) {
+                                    card3.innerHTML = `
+                                        <div class="text-[24px] font-semibold mb-4 text-gray-800">Risk Assessment</div>
+                                        <div class="text-[18px] font-semibold mb-2 text-gray-700">Urgency: ${result.info.urgency}</div>
+                                        <div class="text-[16px] text-gray-700">${result.info.risk}</div>
+                                    `;
+                                }
+                                
+                                // Card 4: Recommended Action
+                                if (card4) {
+                                    card4.innerHTML = `
+                                        <div class="text-[24px] font-semibold mb-4">Recommended Action</div>
+                                        <div class="text-[18px]">${result.info.maintenance}</div>
+                                    `;
+                                }
+                            }
+                            
+                            // Show Result section
+                            if (resultSection) resultSection.style.display = 'block';
+                            
+                            // Scroll to result
+                            if (resultSection) resultSection.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            showNotification('Prediction Failed', result.error || 'Failed to analyze the image', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        if (loadingSpinner) loadingSpinner.style.display = 'none';
+                        showNotification('Connection Error', 'Cannot connect to the prediction API. Please make sure the server is running.', 'error');
+                    }
+                });
+            } else {
+                console.error('imageInput not found!');
+            }
+            
+            // Contact Form Handler
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const subject = document.getElementById('contactSubject').value;
+                    const message = document.getElementById('contactMessage').value;
+                    
+                    // Simple validation
+                    if (!name || !email || !subject || !message) {
+                        showNotification('Incomplete Form', 'Please fill in all required fields', 'warning');
+                        return;
+                    }
+                    
+                    // Email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        showNotification('Invalid Email', 'Please enter a valid email address', 'error');
+                        return;
+                    }
+                    
+                    // Compose email body
+                    const emailBody = `Hi SolarEye Team,\n\n${message}\n\nBest regards,\n${name}\n${email}`;
+                    const mailtoLink = `mailto:solareye.system@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoLink;
+                    
+                    // Show success notification
+                    showNotification(
+                        'Email Client Opened!', 
+                        `Your email client should open now. If not, please send your message to: solareye.system@gmail.com`,
+                        'success'
+                    );
+                    
+                    // Clear form after a delay
+                    setTimeout(() => {
+                        contactForm.reset();
+                    }, 2000);
+                });
+            }
+        </script>
+    </body>
+</html>

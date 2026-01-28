@@ -1,0 +1,269 @@
+/* 
+ * 🌞 Solar Panel Predictor Styles
+ * Styling untuk hasil prediksi dan interface
+ */
+
+/* Result Card Styling */
+.result-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.result-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.urgency-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.result-body {
+    display: grid;
+    gap: 16px;
+}
+
+.predicted-class {
+    font-size: 28px;
+    font-weight: 700;
+    color: #29344A;
+    margin: 0;
+}
+
+.confidence-text {
+    font-size: 16px;
+    color: #555;
+    margin: 8px 0;
+}
+
+.confidence-text strong {
+    font-weight: 700;
+    color: #29344A;
+}
+
+.description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+/* Risk Section */
+.risk-section,
+.maintenance-section {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #29344A;
+}
+
+.risk-section strong,
+.maintenance-section strong {
+    color: #29344A;
+    font-size: 14px;
+}
+
+.risk-text,
+.maintenance-text {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 6px 0 0 0;
+}
+
+/* Probabilities Section */
+.probabilities-section {
+    margin-top: 16px;
+}
+
+.probabilities-section strong {
+    color: #29344A;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.probabilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.probabilities-list li {
+    display: grid;
+    grid-template-columns: 120px 1fr 50px;
+    gap: 12px;
+    align-items: center;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+}
+
+.class-name {
+    font-weight: 500;
+    color: #29344A;
+    font-size: 13px;
+}
+
+.probability-bar {
+    background-color: #e0e0e0;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.probability-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    transition: width 0.3s ease;
+}
+
+.probability-value {
+    font-weight: 600;
+    font-size: 12px;
+    color: #29344A;
+    text-align: right;
+}
+
+/* Loading State */
+[data-loading] {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f0f0f0;
+    border-top: 4px solid #29344A;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    margin-top: 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Drop Zone Styling */
+[data-drop-zone] {
+    border: 2px dashed #d0d0d0;
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+[data-drop-zone]:hover {
+    border-color: #29344A;
+    background-color: #f0f5ff;
+}
+
+[data-drop-zone].bg-blue-100 {
+    border-color: #29344A;
+    background-color: #e3f2fd;
+}
+
+/* Image Preview */
+[data-image-preview] {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    margin: 12px 0;
+    display: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Container */
+[data-result-container] {
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .probabilities-list li {
+        grid-template-columns: 80px 1fr 40px;
+    }
+
+    .predicted-class {
+        font-size: 22px;
+    }
+
+    .result-card {
+        padding: 16px;
+    }
+
+    [data-drop-zone] {
+        padding: 20px;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 16px;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.p-4 {
+    padding: 16px;
+}
+
+.rounded-lg {
+    border-radius: 8px;
+}
