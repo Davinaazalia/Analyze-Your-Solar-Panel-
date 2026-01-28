@@ -1,39 +1,38 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies untuk OpenCV
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     libsm6 \
+    libxrender1 \
     libxext6 \
-    libxrender-dev \
-    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
-COPY requirements.txt .
+# Copy only production requirements
+COPY requirements-prod.txt .
 
-# Install Python packages
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python packages (optimized for production)
+RUN pip install --no-cache-dir -r requirements-prod.txt
 
-# Copy aplikasi
-COPY . .
-
-# Create non-root user untuk security
-RUN useradd -m -u 1000 streamlit_user && chown -R streamlit_user:streamlit_user /app
-USER streamlit_user
+# Copy only necessary application files
+COPY api_server.py .
+COPY inference_helper.py .
+COPY models/saved_models/best_solar_panel_classifier.pt ./models/saved_models/
+COPY Web_Implementation ./Web_Implementation
 
 # Expose port
-EXPOSE 8501
+EXPOSE 5000
+
+# Set environment variables
+ENV FLASK_ENV=production
+ENV PYTHONUNBUFFERED=1
 
 # Health check
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:5000/health', timeout=5)"
 
-# Streamlit config
-ENV STREAMLIT_SERVER_PORT=8501 \
-    STREAMLIT_SERVER_ADDRESS=0.0.0.0 \
-    STREAMLIT_SERVER_HEADLESS=true \
-    STREAMLIT_LOGGER_LEVEL=info
-
-# Run app
-CMD ["streamlit", "run", "app.py"]
+# Run the Flask API
+CMD ["python", "api_server.py"]

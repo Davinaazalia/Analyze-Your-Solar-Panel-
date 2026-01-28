@@ -276,6 +276,15 @@ def batch_predict():
         return jsonify({'error': f'Server error: {str(e)}'}), 500
 
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Health check endpoint untuk Railway"""
+    return jsonify({
+        'status': 'healthy',
+        'model_loaded': model is not None
+    }), 200
+
+
 if __name__ == '__main__':
     import os
     port = int(os.environ.get('PORT', 5000))
